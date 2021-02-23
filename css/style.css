@@ -561,7 +561,7 @@ about section
     max-width: 100%;
     position: relative;
 }
-.about-section .timeline::before{
+.about-section .timeline:before{
     content: '';
     width: 1px;
     height: 100%;
