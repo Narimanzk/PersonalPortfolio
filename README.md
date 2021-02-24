@@ -1,5 +1,3 @@
-#Nariman's Personal Website
-
 ## My Portfolio Website
 
 This website will represent me as a software developer. I built it from sractch using HTML, CSS and Js.
