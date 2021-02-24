@@ -649,26 +649,26 @@ about section
     margin: 15px 0 0;
 }
 /*---------------
-service-section
+tool-section
 ----------------*/
-.service-section{
+.tool-section{
     padding: 80px 0 80px;
     min-height: 100vh;
 }
-.service-section .service-item{
+.tool-section .tool-item{
     flex: 0 0 33.33%;
     max-width: 33.33%;
     padding: 15px;
     display: flex;
     flex-wrap: wrap;
 }
-.service-section .service-item-inner{
+.tool-section .tool-item-inner{
     padding: 50px 15px;
     border-radius: 5px;
     text-align: center;
     width: 100%;
 }
-.service-section .service-item-inner .icon{
+.tool-section .tool-item-inner .icon{
     height: 60px;
     width: 60px;
     text-align: center;
@@ -678,7 +678,7 @@ service-section
     margin: 0 auto 30px;
     position: relative;
 }
-.service-section .service-item-inner .icon:after{
+.tool-section .tool-item-inner .icon:after{
     content: '';
     position: absolute;
     left: 0;
@@ -688,28 +688,28 @@ service-section
     border-radius: 50%;
     transition: all 0.3s ease;
 }
-.service-section .service-item-inner:hover .icon{
+.tool-section .tool-item-inner:hover .icon{
     box-shadow: var(--inner-shadow-0);
 }
-.service-section .service-item-inner:hover .icon:after{
+.tool-section .tool-item-inner:hover .icon:after{
     box-shadow: var(--outer-shadow);
 }
-.service-section .service-item-inner .icon i{
+.tool-section .tool-item-inner .icon i{
     font-size: 25px;
     line-height: 60px;
     transition: all 0.3s ease;
 }
-.service-section .service-item-inner:hover .icon i{
+.tool-section .tool-item-inner:hover .icon i{
     color: var(--skin-color);
 }
-.service-section .service-item-inner h3{
+.tool-section .tool-item-inner h3{
     font-size: 20px;
     font-weight: 600;
     color: var(--text-black-700);
     margin: 0 0 10px;
     text-transform: capitalize;
 }
-.service-section .service-item-inner p{
+.tool-section .tool-item-inner p{
     font-size: 16px;
     color: var(--text-black-600);
     margin: 0;
