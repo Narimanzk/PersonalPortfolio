@@ -26,8 +26,8 @@
   });
 })();
 
-function bodyScrollingToggle(){
-        document.body.classList.toggle("stop-scrolling");
+function bodyScrollingToggle() {
+  document.body.classList.toggle("stop-scrolling");
 }
 /*---------------------- portfolio filter and popup ----------------------*/
 
@@ -79,26 +79,75 @@ function bodyScrollingToggle(){
       screenshots = portfolioItems[itemIndex]
         .querySelector(".portfolio-item-img img")
         .getAttribute("data-screenshots");
-        //convert screenshots into array
-        screenshots = screenshots.split(",");
-        slideIndex = 0;
-        popupToggle();
-        popupSlideShow();
+      //convert screenshots into array
+      screenshots = screenshots.split(",");
+      if (screenshots.length === 1) {
+        prevBtn.style.display = "none";
+        nextBtn.style.display = "none";
+      } else {
+        prevBtn.style.display = "block";
+        nextBtn.style.display = "block";
+      }
+      slideIndex = 0;
+      popupToggle();
+      popupSlideShow();
+      //popupDetails();
     }
   });
 
-  closeBtn.addEventListener("click", () =>{
-          popupToggle();
-  })
-  function popupToggle(){
-          popup.classList.toggle("open");
-          bodyScrollingToggle();
+  closeBtn.addEventListener("click", () => {
+    popupToggle();
+  });
+  function popupToggle() {
+    popup.classList.toggle("open");
+    bodyScrollingToggle();
   }
-  function popupSlideShow(){
-          const imgSrc = screenshots[slideIndex];
-          const popupImg = popup.querySelector(".pp-img");
-          /* activate loader until the popupImg loaded */
-          popupImg.src = imgSrc;
+  function popupSlideShow() {
+    const imgSrc = screenshots[slideIndex];
+    const popupImg = popup.querySelector(".pp-img");
+    /* activate loader until the popupImg loaded */
+    popup.querySelector(".pp-loader").classList.add("active");
+    popupImg.src = imgSrc;
+    popupImg.onload = () => {
+      //   deactivate loader after popupImg loaded
+      popup.querySelector(".pp-loader").classList.remove("active");
+    };
+    popup.querySelector(".pp-counter").innerHTML =
+      slideIndex + 1 + " of " + screenshots.length;
   }
 
+  // next slide
+  nextBtn.addEventListener("click", () => {
+    if (slideIndex === screenshots.length - 1) {
+      slideIndex = 0;
+    } else {
+      slideIndex++;
+    }
+    popupSlideShow();
+  });
+  // prev slide
+  prevBtn.addEventListener("click", () => {
+    if (slideIndex === 0) {
+      slideIndex = screenshots.length - 1;
+    } else {
+      slideIndex--;
+    }
+    popupSlideShow();
+  });
+
+  projectDetailsBtn.addEventListener("click", () => {
+    popupDetailsToggle();
+  });
+
+  function popupDetailsToggle() {
+    if (projectDetailsContainer.classList.contains("active")) {
+            projectDetailsContainer.classList.remove("active");
+            projectDetailsContainer.style.maxHeight = 0 + "px"
+    } else {
+      projectDetailsContainer.classList.add("active");
+      projectDetailsContainer.style.maxHeight =
+        projectDetailsContainer.scrollHeight + "px";
+        popup.scrollTo(0,projectDetailsContainer.offsetTop);
+    }
+  }
 })();
