@@ -49,11 +49,20 @@
           event.target.classList.remove("outer-shadow", "hover-in-shadow");
           // hide navigation menu
           hideNavMenu();
-          console.log("clicked 'link-item is contained within the navigation menu'");
         }
         else{
-          console.log("clicked 'link-item is not contained within the navigation menu'");
+          let navItems = navMenu.querySelectorAll(".link-item");
+          navItems.forEach((item) =>{
+            if(hash === item.hash){
+              // activate new navigation menu 'link-item'
+              item.classList.add("active", "inner-shadow");
+              item.classList.remove("outer-shadow", "hover-in-shadow");
+            }
+          })
+          fadeOutEffect();
         }
+        // add hash (#) to url
+        window.location.hash = hash;
       }
     }
   });

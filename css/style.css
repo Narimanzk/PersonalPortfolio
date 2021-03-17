@@ -21,6 +21,21 @@ global style
   --inner-shadow: inset 3px 3px 3px #d0d0d0, inset -3px -3px 3px #f8f8f8;
   --inner-shadow-0: inset 0 0 0 #d0d0d0, inset 0 0 0 #f8f8f8;
 }
+/* override custom css variables for dark theme */
+body.dark {
+  --bg-black-900: #ffffff;
+  --bg-black-100: #353535;
+  --bg-black-50: #2b2c2f;
+  --bg-opacity: rgba(43, 44, 47, 0.5);
+  --text-black-900: #ffffff;
+  --text-black-700: #ffffff;
+  --text-black-600: #bbbbbb;
+  --outer-shadow: 3px 3px 3px #222327, -3px -3px 3px #363636;
+  --outer-shadow-0: 0 0 0 #222327, 0 0 0 #f8f8f8;
+  --inner-shadow: inset 3px 3px 3px #222327, inset -3px -3px 3px #363636;
+  --inner-shadow-0: inset 0 0 0 #222327, inset 0 0 0 #363636;
+  
+}
 body {
   font-size: 16px;
   line-height: 1.5;
@@ -238,8 +253,8 @@ img {
   font-weight: 600;
   color: var(--skin-color);
 }
-.section.hide{
-    display: none;
+.section.hide {
+  display: none;
 }
 /* -----------
 header
@@ -318,33 +333,33 @@ navigation menu
   overflow-y: auto;
 }
 .fade-out-effect {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: var(--bg-black-50);
-    z-index: -1;
-    visibility: hidden;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg-black-50);
+  z-index: -1;
+  visibility: hidden;
 }
 .fade-out-effect.active {
-    visibility: visible;
-    z-index: 1000;
-    animation: fadeOut 0.3s ease-out;
+  visibility: visible;
+  z-index: 1000;
+  animation: fadeOut 0.3s ease-out;
 }
-@keyframes fadeOut{
-    0%{
-        opacity: 1;
-    }
-    100%{
-        opacity: 0;
-    }
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 .nav-menu.open {
-    visibility: visible;
-    opacity: 1;
-    z-index: 999;
-    transition: all 0.3s ease-in;
+  visibility: visible;
+  opacity: 1;
+  z-index: 999;
+  transition: all 0.3s ease-in;
 }
 .nav-menu .close-nav-menu {
   height: 40px;
@@ -385,7 +400,7 @@ navigation menu
   display: inline-block;
   font-size: 28px;
   font-weight: 600;
-  color: var(--text-black-700);
+  color: var(--text-black-600);
   padding: 5px 30px;
   text-transform: capitalize;
   border-radius: 30px;
@@ -437,7 +452,7 @@ home section
 .home-section .home-text h1 {
   font-size: 20px;
   font-weight: 500;
-  color: var(--text-black-700);
+  color: var(--text-black-600);
   margin: 0;
   text-transform: capitalize;
 }
@@ -719,6 +734,7 @@ tool-section
   display: block;
   margin: 0 auto 30px;
   position: relative;
+  color: var(--text-black-600);
 }
 .tool-section .tool-item-inner .icon:after {
   content: "";
