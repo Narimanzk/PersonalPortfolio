@@ -27,7 +27,7 @@
 })();
 
 function bodyScrollingToggle() {
-  document.body.classList.toggle("stop-scrolling");
+  document.body.classList.toggle("hidden-scrolling");
 }
 /*---------------------- portfolio filter and popup ----------------------*/
 
@@ -40,7 +40,7 @@ function bodyScrollingToggle() {
     (nextBtn = popup.querySelector(".pp-next")),
     (closeBtn = popup.querySelector(".pp-close")),
     (projectDetailsContainer = popup.querySelector(".pp-details")),
-    (projectDetailsBtn = popup.querySelector(".pp-project- details-btn"));
+    (projectDetailsBtn = popup.querySelector(".pp-project-details-btn"));
   let itemIndex, slideIndex, screenshots;
 
   /* filter portfolio items */
@@ -91,12 +91,15 @@ function bodyScrollingToggle() {
       slideIndex = 0;
       popupToggle();
       popupSlideShow();
-      //popupDetails();
+      popupDetails();
     }
   });
 
   closeBtn.addEventListener("click", () => {
     popupToggle();
+    if (projectDetailsContainer.classList.contains("active")) {
+      popupDetailsToggle();
+    }
   });
   function popupToggle() {
     popup.classList.toggle("open");
@@ -135,19 +138,98 @@ function bodyScrollingToggle() {
     popupSlideShow();
   });
 
+  function popupDetails() {
+    // if portfolio-item-details not exists
+    if (!portfolioItems[itemIndex].querySelector(".portfolio-item-details")) {
+      projectDetailsBtn.style.display = "none";
+      return; /*end function execution*/
+    }
+    projectDetailsBtn.style.display = "block";
+    // get the project details
+    const details = portfolioItems[itemIndex].querySelector(
+      ".portfolio-item-details"
+    ).innerHTML;
+    // set the project details
+    popup.querySelector(".pp-project-details").innerHTML = details;
+    // get the project title
+    const title = portfolioItems[itemIndex].querySelector(
+      ".portfolio-item-title"
+    ).innerHTML;
+    // set the project title
+    popup.querySelector(".pp-title h2").innerHTML = title;
+    // get the project category
+    const category = portfolioItems[itemIndex].getAttribute("data-category");
+    // set the project category
+    popup.querySelector(".pp-project-category").innerHTML = category
+      .split("-")
+      .join(" ");
+  }
+
   projectDetailsBtn.addEventListener("click", () => {
     popupDetailsToggle();
   });
 
   function popupDetailsToggle() {
     if (projectDetailsContainer.classList.contains("active")) {
-            projectDetailsContainer.classList.remove("active");
-            projectDetailsContainer.style.maxHeight = 0 + "px"
+      projectDetailsBtn.querySelector("i").classList.remove("fa-minus");
+      projectDetailsBtn.querySelector("i").classList.add("fa-plus");
+      projectDetailsContainer.classList.remove("active");
+      projectDetailsContainer.style.maxHeight = 0 + "px";
     } else {
+      projectDetailsBtn.querySelector("i").classList.remove("fa-plus");
+      projectDetailsBtn.querySelector("i").classList.add("fa-minus");
       projectDetailsContainer.classList.add("active");
       projectDetailsContainer.style.maxHeight =
         projectDetailsContainer.scrollHeight + "px";
-        popup.scrollTo(0,projectDetailsContainer.offsetTop);
+      popup.scrollTo(0, projectDetailsContainer.offsetTop);
     }
   }
+})();
+
+/*---------------------- testimonial slider ----------------------*/
+
+(() =>{
+  const sliderContainer = document.querySelector(".testi-slider-container"),
+  slides = sliderContainer.querySelectorAll(".testi-item"),
+  slideWidth = sliderContainer.offsetWidth,
+  prevBtn = document.querySelector(".testi-slider-nav .prev"),
+  nextBtn = document.querySelector(".testi-slider-nav .next"),
+  activeSlide = sliderContainer.querySelector(".testi-item.active");
+  let slideIndex = Array.from(activeSlide.parentElement.children).indexOf(activeSlide);
+
+  // set width of all slides
+  slides.forEach((slide) =>{
+    slide.style.width = slideWidth + "px";
+  })
+  // set width of sliderContainer
+  sliderContainer.style.width = slideWidth * slides.length + "px";
+
+  nextBtn.addEventListener("click", () =>{
+    if(slideIndex === slides.length-1){
+      slideIndex = 0;
+    }
+    else{
+      slideIndex++;
+    }
+    slider();
+  })
+
+  prevBtn.addEventListener("click", () =>{
+    if(slideIndex === 0){
+      slideIndex = slideIndex-1;
+    }
+    else{
+      slideIndex--;
+    }
+    slider();
+  })
+
+  function slider(){
+    // deactivate existing active slide
+    sliderContainer.querySelector(".testi-item.active").classList.remove("active");
+    // activate new slide
+    slides[slideIndex].classList.add("active");
+    sliderContainer.style.marginLeft = - (slideWidth * slideIndex) + "px";
+  }
+  slider();
 })();
