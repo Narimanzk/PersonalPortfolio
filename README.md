@@ -14,5 +14,5 @@ I am working on it, and it will be deployed soon.
 - My skills in different fields
 - My experience in the industry
 - My education
-- A full detailed portfolio of the projects that I've done (TODO)
-- Dark Mode (TODO)
+- A full detailed portfolio of the projects that I've done
+- Dark Mode
